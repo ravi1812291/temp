@@ -12,14 +12,22 @@ import com.mb11.application.dao.user.UserInvitePlatformLinkDAO;
 import com.mb11.application.model.user.UserInvitePlatformLink;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class UserInvitePlatformLinkDaoImpl.
+ */
 @Transactional
 @Repository
 public class UserInvitePlatformLinkDaoImpl implements UserInvitePlatformLinkDAO {
 
+	/** The entity manager. */
 	@PersistenceContext	
 	private EntityManager entityManager;
 
 
+	/* (non-Javadoc)
+	 * @see com.mb11.application.dao.user.UserInvitePlatformLinkDAO#getAllUserInvitePlatformLink()
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<UserInvitePlatformLink> getAllUserInvitePlatformLink() {
@@ -28,12 +36,18 @@ public class UserInvitePlatformLinkDaoImpl implements UserInvitePlatformLinkDAO 
 		return (List<UserInvitePlatformLink>) entityManager.createQuery(hql).getResultList();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mb11.application.dao.user.UserInvitePlatformLinkDAO#getUserInvitePlatformLinkById(java.lang.Long)
+	 */
 	@Override
 	public UserInvitePlatformLink getUserInvitePlatformLinkById(Long id) {
 	
 		return entityManager.find(UserInvitePlatformLink.class, id);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mb11.application.dao.user.UserInvitePlatformLinkDAO#addUserInvitePlatformLink(com.mb11.application.model.user.UserInvitePlatformLink)
+	 */
 	@Override
 	public void addUserInvitePlatformLink(UserInvitePlatformLink userInvitePlatformLink) {
 	
@@ -41,6 +55,9 @@ public class UserInvitePlatformLinkDaoImpl implements UserInvitePlatformLinkDAO 
 
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mb11.application.dao.user.UserInvitePlatformLinkDAO#updateUserInvitePlatformLink(com.mb11.application.model.user.UserInvitePlatformLink)
+	 */
 	@Override
 	public void updateUserInvitePlatformLink(UserInvitePlatformLink userInvitePlatformLink) {
 		UserInvitePlatformLink uipl=getUserInvitePlatformLinkById(userInvitePlatformLink.getID());
@@ -48,6 +65,9 @@ public class UserInvitePlatformLinkDaoImpl implements UserInvitePlatformLinkDAO 
 		entityManager.flush();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mb11.application.dao.user.UserInvitePlatformLinkDAO#deleteUserInvitePlatformLink(java.lang.Long)
+	 */
 	@Override
 	public void deleteUserInvitePlatformLink(Long id) {
 	

@@ -15,18 +15,30 @@ import com.mb11.application.model.cricapidata.MTeam;
 import com.mb11.application.model.cricapidata.Series;
 import com.mb11.application.model.cricapidata.Sporttype;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Mb11Application.
+ */
 @SpringBootApplication
 public class Mb11Application implements CommandLineRunner {
 
+	/** The srm. */
 	@Autowired
 	private SeriesDaoImpl srm;
 	
 	
+	/** The mdi. */
 	@Autowired
 	private MTeamDaoImpl mdi;
 	
+	/** The logger. */
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(Mb11Application.class, args);
 		
@@ -34,6 +46,9 @@ public class Mb11Application implements CommandLineRunner {
 	
 	}
 
+	/* (non-Javadoc)
+	 * @see org.springframework.boot.CommandLineRunner#run(java.lang.String[])
+	 */
 	@Override
 	public void run(String... args) throws Exception {
 		

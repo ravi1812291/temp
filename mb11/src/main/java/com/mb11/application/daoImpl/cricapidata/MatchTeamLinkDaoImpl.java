@@ -12,13 +12,21 @@ import com.mb11.application.dao.cricapidata.MatchTeamLinkDAO;
 import com.mb11.application.model.cricapidata.MatchTeamLink;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MatchTeamLinkDaoImpl.
+ */
 @Transactional
 @Repository
 public class MatchTeamLinkDaoImpl implements MatchTeamLinkDAO {
 
+	/** The entity manager. */
 	@PersistenceContext	
 	private EntityManager entityManager;
 
+	/* (non-Javadoc)
+	 * @see com.mb11.application.dao.cricapidata.MatchTeamLinkDAO#getAllMatchTeamLink()
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<MatchTeamLink> getAllMatchTeamLink() {
@@ -27,12 +35,18 @@ public class MatchTeamLinkDaoImpl implements MatchTeamLinkDAO {
 		return (List<MatchTeamLink>) entityManager.createQuery(hql).getResultList();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mb11.application.dao.cricapidata.MatchTeamLinkDAO#getMatchTeamLinkById(java.lang.Long)
+	 */
 	@Override
 	public MatchTeamLink getMatchTeamLinkById(Long id) {
 		
 		return entityManager.find(MatchTeamLink.class, id);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mb11.application.dao.cricapidata.MatchTeamLinkDAO#addMatchTeamLink(com.mb11.application.model.cricapidata.MatchTeamLink)
+	 */
 	@Override
 	public void addMatchTeamLink(MatchTeamLink matchTeamLink) {
 		
@@ -40,6 +54,9 @@ public class MatchTeamLinkDaoImpl implements MatchTeamLinkDAO {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mb11.application.dao.cricapidata.MatchTeamLinkDAO#updateMatchTeamLink(com.mb11.application.model.cricapidata.MatchTeamLink)
+	 */
 	@Override
 	public void updateMatchTeamLink(MatchTeamLink matchTeamLink) {
 		
@@ -50,6 +67,9 @@ public class MatchTeamLinkDaoImpl implements MatchTeamLinkDAO {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mb11.application.dao.cricapidata.MatchTeamLinkDAO#deleteMatchTeamLink(java.lang.Long)
+	 */
 	@Override
 	public void deleteMatchTeamLink(Long id) {
 		entityManager.remove(getMatchTeamLinkById(id));

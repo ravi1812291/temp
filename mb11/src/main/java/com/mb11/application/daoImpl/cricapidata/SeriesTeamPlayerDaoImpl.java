@@ -13,14 +13,22 @@ import com.mb11.application.model.cricapidata.Series;
 import com.mb11.application.model.cricapidata.SeriesTeamPlayer;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SeriesTeamPlayerDaoImpl.
+ */
 @Transactional
 @Repository
 public class SeriesTeamPlayerDaoImpl implements SeriesTeamPlayerDAO {
 
 	
+	/** The entity manager. */
 	@PersistenceContext	
 	private EntityManager entityManager;
 
+	/* (non-Javadoc)
+	 * @see com.mb11.application.dao.cricapidata.SeriesTeamPlayerDAO#getAllSeriesTeamPlayer()
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<SeriesTeamPlayer> getAllSeriesTeamPlayer() {
@@ -29,18 +37,27 @@ public class SeriesTeamPlayerDaoImpl implements SeriesTeamPlayerDAO {
 		return (List<SeriesTeamPlayer>) entityManager.createQuery(hql).getResultList();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mb11.application.dao.cricapidata.SeriesTeamPlayerDAO#getSeriesTeamPlayerById(java.lang.Long)
+	 */
 	@Override
 	public SeriesTeamPlayer getSeriesTeamPlayerById(Long id) {
 		
 		return entityManager.find(SeriesTeamPlayer.class, id);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mb11.application.dao.cricapidata.SeriesTeamPlayerDAO#addSeriesTeamPlayer(com.mb11.application.model.cricapidata.SeriesTeamPlayer)
+	 */
 	@Override
 	public void addSeriesTeamPlayer(SeriesTeamPlayer seriesTeamPlayer) {
 		
 		entityManager.persist(seriesTeamPlayer);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mb11.application.dao.cricapidata.SeriesTeamPlayerDAO#updateSeriesTeamPlayer(com.mb11.application.model.cricapidata.SeriesTeamPlayer)
+	 */
 	@Override
 	public void updateSeriesTeamPlayer(SeriesTeamPlayer seriesTeamPlayer) {
 		SeriesTeamPlayer stp=getSeriesTeamPlayerById(seriesTeamPlayer.getID());
@@ -48,6 +65,9 @@ public class SeriesTeamPlayerDaoImpl implements SeriesTeamPlayerDAO {
 		entityManager.flush();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mb11.application.dao.cricapidata.SeriesTeamPlayerDAO#deleteSeriesTeamPlayer(java.lang.Long)
+	 */
 	@Override
 	public void deleteSeriesTeamPlayer(Long id) {
 		

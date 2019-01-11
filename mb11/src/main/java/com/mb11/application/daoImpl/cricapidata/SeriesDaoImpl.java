@@ -14,15 +14,23 @@ import com.mb11.application.dao.cricapidata.SeriesDAO;
 import com.mb11.application.model.cricapidata.Series;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SeriesDaoImpl.
+ */
 @Transactional
 @Repository
 public class SeriesDaoImpl implements SeriesDAO{
 	
+	/** The entity manager. */
 	@PersistenceContext	
 	private EntityManager entityManager;
 	
 
 
+	/* (non-Javadoc)
+	 * @see com.mb11.application.dao.cricapidata.SeriesDAO#getAllSeries()
+	 */
 	@Override
 	public List<Series> getAllSeries() {
 		
@@ -33,6 +41,9 @@ public class SeriesDaoImpl implements SeriesDAO{
 				getResultList();
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.mb11.application.dao.cricapidata.SeriesDAO#getSeriesWrtStartAndEndDate(java.util.Date, java.util.Date)
+	 */
 	public List<Series> getSeriesWrtStartAndEndDate(Date startDate,Date endDate)
 	{
 		return entityManager.createQuery("from Series where startdate>="+"'"+startDate+"'"+"and enddate<="+"'"+endDate+"'",Series.class)
@@ -41,12 +52,18 @@ public class SeriesDaoImpl implements SeriesDAO{
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mb11.application.dao.cricapidata.SeriesDAO#getSeriesById(java.lang.Long)
+	 */
 	@Override
 	public Series getSeriesById(Long id) {
 		
 		return entityManager.find(Series.class, id);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mb11.application.dao.cricapidata.SeriesDAO#addSeries(com.mb11.application.model.cricapidata.Series)
+	 */
 	@Override
 	public void addSeries(Series series) {
 		
@@ -56,6 +73,9 @@ public class SeriesDaoImpl implements SeriesDAO{
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mb11.application.dao.cricapidata.SeriesDAO#updateSeries(com.mb11.application.model.cricapidata.Series)
+	 */
 	@Override
 	public void updateSeries(Series series) {
 		
@@ -69,6 +89,9 @@ public class SeriesDaoImpl implements SeriesDAO{
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mb11.application.dao.cricapidata.SeriesDAO#deleteSeries(java.lang.Long)
+	 */
 	@Override
 	public void deleteSeries(Long id) {
 		

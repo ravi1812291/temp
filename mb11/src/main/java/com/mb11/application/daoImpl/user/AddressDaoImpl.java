@@ -12,13 +12,21 @@ import com.mb11.application.dao.user.AddressDAO;
 import com.mb11.application.model.user.Address;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AddressDaoImpl.
+ */
 @Transactional
 @Repository
 public class AddressDaoImpl implements AddressDAO {
 
+	/** The entity manager. */
 	@PersistenceContext	
 	private EntityManager entityManager;
 	
+	/* (non-Javadoc)
+	 * @see com.mb11.application.dao.user.AddressDAO#getAllAddress()
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Address> getAllAddress() {
@@ -26,12 +34,18 @@ public class AddressDaoImpl implements AddressDAO {
 		return (List<Address>) entityManager.createQuery(hql).getResultList();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mb11.application.dao.user.AddressDAO#getAddressById(java.lang.Long)
+	 */
 	@Override
 	public Address getAddressById(Long id) {
 		
 		return entityManager.find(Address.class, id);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mb11.application.dao.user.AddressDAO#addAddress(com.mb11.application.model.user.Address)
+	 */
 	@Override
 	public void addAddress(Address address) {
 		
@@ -40,6 +54,9 @@ public class AddressDaoImpl implements AddressDAO {
 	}
 
 	
+	/* (non-Javadoc)
+	 * @see com.mb11.application.dao.user.AddressDAO#updateAddress(com.mb11.application.model.user.Address)
+	 */
 	@Override
 	public void updateAddress(Address address) {
 		Address addr=getAddressById(address.getID());
@@ -48,6 +65,9 @@ public class AddressDaoImpl implements AddressDAO {
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mb11.application.dao.user.AddressDAO#deleteAddress(java.lang.Long)
+	 */
 	@Override
 	public void deleteAddress(Long id) {
 		

@@ -13,14 +13,22 @@ import com.mb11.application.model.user.RoleUserLink;
 
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class RoleUserLinkDaoImpl.
+ */
 @Transactional
 @Repository
 public class RoleUserLinkDaoImpl implements RoleUserLinkDAO {
 
+	/** The entity manager. */
 	@PersistenceContext	
 	private EntityManager entityManager;
 
 
+	/* (non-Javadoc)
+	 * @see com.mb11.application.dao.user.RoleUserLinkDAO#getAllRoleUserLink()
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<RoleUserLink> getAllRoleUserLink() {
@@ -29,6 +37,9 @@ public class RoleUserLinkDaoImpl implements RoleUserLinkDAO {
 		return (List<RoleUserLink>) entityManager.createQuery(hql).getResultList();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mb11.application.dao.user.RoleUserLinkDAO#getRoleUserLinkById(java.lang.Long)
+	 */
 	@Override
 	public RoleUserLink getRoleUserLinkById(Long id) {
 		
@@ -36,12 +47,18 @@ public class RoleUserLinkDaoImpl implements RoleUserLinkDAO {
 		return entityManager.find(RoleUserLink.class, id);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mb11.application.dao.user.RoleUserLinkDAO#addRoleUserLink(com.mb11.application.model.user.RoleUserLink)
+	 */
 	@Override
 	public void addRoleUserLink(RoleUserLink roleUserLink) {
 		entityManager.persist(roleUserLink);
 
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mb11.application.dao.user.RoleUserLinkDAO#updateRoleUserLink(com.mb11.application.model.user.RoleUserLink)
+	 */
 	@Override
 	public void updateRoleUserLink(RoleUserLink roleUserLink) {
 		
@@ -51,6 +68,9 @@ public class RoleUserLinkDaoImpl implements RoleUserLinkDAO {
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mb11.application.dao.user.RoleUserLinkDAO#deleteRoleUserLink(java.lang.Long)
+	 */
 	@Override
 	public void deleteRoleUserLink(Long id) {
 		

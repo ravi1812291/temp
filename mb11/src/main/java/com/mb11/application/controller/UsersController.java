@@ -17,25 +17,48 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.mb11.application.model.user.Users;
 import com.mb11.application.service.user.UsersService;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class UsersController.
+ */
 @Controller
 @RequestMapping("api")
 public class UsersController {
 	
+	/** The users service. */
 	@Autowired
 	private UsersService usersService;
 	
+	/**
+	 * Gets the users by id.
+	 *
+	 * @param id the id
+	 * @return the users by id
+	 */
 	@GetMapping("users/{id}")
 	public ResponseEntity<Users> getUsersById(@PathVariable("id") Long id) {
 		Users users = usersService.getUsersById(id);
 		return new ResponseEntity<Users>(users, HttpStatus.OK);
 	}
 	
+	/**
+	 * Gets the all users.
+	 *
+	 * @return the all users
+	 */
 	@GetMapping("users")
 	public ResponseEntity<List<Users>> getAllUsers() {
 		List<Users> list = usersService.getAllUsers();
 		return new ResponseEntity<List<Users>>(list, HttpStatus.OK);
 	}
 	
+	/**
+	 * Adds the users.
+	 *
+	 * @param users the users
+	 * @param builder the builder
+	 * @return the response entity
+	 */
 	@PostMapping("users")
 	public ResponseEntity<Void> addUsers(@RequestBody Users users, UriComponentsBuilder builder) {
         boolean flag = usersService.addUsers(users);
@@ -47,6 +70,12 @@ public class UsersController {
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
 	
+	/**
+	 * Update users.
+	 *
+	 * @param users the users
+	 * @return the response entity
+	 */
 	@PutMapping("users")
 	public ResponseEntity<Users> updateUsers(@RequestBody Users users) {
 		usersService.updateUsers(users);
@@ -54,6 +83,12 @@ public class UsersController {
 	}
 	
 	
+	/**
+	 * Delete users.
+	 *
+	 * @param id the id
+	 * @return the response entity
+	 */
 	@DeleteMapping("users/{id}")
 	public ResponseEntity<Void> deleteUsers(@PathVariable("id") Long id) {
 		usersService.deleteUsers(id);

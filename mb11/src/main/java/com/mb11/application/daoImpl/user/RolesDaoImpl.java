@@ -13,15 +13,23 @@ import com.mb11.application.model.user.Roles;
 
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class RolesDaoImpl.
+ */
 @Transactional
 @Repository
 public class RolesDaoImpl implements RolesDAO {
 
 	
+	/** The entity manager. */
 	@PersistenceContext	
 	private EntityManager entityManager;
 
 
+	/* (non-Javadoc)
+	 * @see com.mb11.application.dao.user.RolesDAO#getAllRoles()
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Roles> getAllRoles() {
@@ -30,6 +38,9 @@ public class RolesDaoImpl implements RolesDAO {
 		return (List<Roles>) entityManager.createQuery(hql).getResultList();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mb11.application.dao.user.RolesDAO#getRolesById(java.lang.Long)
+	 */
 	@Override
 	public Roles getRolesById(Long id) {
 		
@@ -37,6 +48,9 @@ public class RolesDaoImpl implements RolesDAO {
 	}
 	
 
+	/* (non-Javadoc)
+	 * @see com.mb11.application.dao.user.RolesDAO#addRoles(com.mb11.application.model.user.Roles)
+	 */
 	@Override
 	public void addRoles(Roles roles) {
 		
@@ -44,6 +58,9 @@ public class RolesDaoImpl implements RolesDAO {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mb11.application.dao.user.RolesDAO#updateRoles(com.mb11.application.model.user.Roles)
+	 */
 	@Override
 	public void updateRoles(Roles roles) {
 		
@@ -53,6 +70,9 @@ public class RolesDaoImpl implements RolesDAO {
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mb11.application.dao.user.RolesDAO#deleteRoles(java.lang.Long)
+	 */
 	@Override
 	public void deleteRoles(Long id) {
 		entityManager.remove(getRolesById(id));

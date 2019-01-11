@@ -1,5 +1,15 @@
 package com.mb11.application.model.cricapidata;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Enum Sporttype.
+ */
 public enum Sporttype {
-	Cricket, Football, Kabadi
+	
+	/** The Cricket. */
+	Cricket, 
+ /** The Football. */
+ Football, 
+ /** The Kabadi. */
+ Kabadi
 }
