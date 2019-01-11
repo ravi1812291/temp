@@ -32,11 +32,14 @@ public class SeriesTeamLinkDaoImpl implements SeriesTeamLinkDAO {
 	@Override
 	public SeriesTeamLink getSeriesTeamLinkById(Long id) {
 		
+		
+		
 		return entityManager.find(SeriesTeamLink.class, id);
 	}
 
 	@Override
 	public void addSeriesTeamLink(SeriesTeamLink seriesTeamLink) {
+		
 		entityManager.persist(seriesTeamLink);
 		
 	}

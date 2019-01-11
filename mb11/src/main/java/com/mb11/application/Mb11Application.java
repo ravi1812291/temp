@@ -38,6 +38,8 @@ public class Mb11Application implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		
 		
+		//srm.getSeriesWrtStartAndEndDate(new Date(), new Date());
+		
 		//mdi.addMTeam(new MTeam("Myteam1",Sporttype.Football));
 		
 		//logger.info("Full MTeam -> {}", mdi.getAllMTeam());

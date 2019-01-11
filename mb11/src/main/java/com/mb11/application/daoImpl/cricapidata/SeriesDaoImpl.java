@@ -1,5 +1,6 @@
 package com.mb11.application.daoImpl.cricapidata;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -30,6 +31,14 @@ public class SeriesDaoImpl implements SeriesDAO{
 		return entityManager.createQuery("from Series", 
 				Series.class).
 				getResultList();
+	}
+	
+	public List<Series> getSeriesWrtStartAndEndDate(Date startDate,Date endDate)
+	{
+		return entityManager.createQuery("from Series where startdate>="+"'"+startDate+"'"+"and enddate<="+"'"+endDate+"'",Series.class)
+		.getResultList();
+		
+		
 	}
 
 	@Override
