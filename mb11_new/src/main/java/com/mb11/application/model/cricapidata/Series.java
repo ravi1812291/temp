@@ -78,6 +78,22 @@ public class Series {
 		}
    	
    	
+   	
+   	
+
+
+	public Series(@NotNull String seriesId, String sname, Date startdate, Date enddate, int totalmatch) {
+	super();
+	this.seriesId = seriesId;
+	this.sname = sname;
+	this.startdate = startdate;
+	this.enddate = enddate;
+	this.totalmatch = totalmatch;
+}
+
+
+
+
 
 
 	public Series(@NotNull String seriesId, String sname, Date startdate, Date enddate, int totalmatch, List<MTeam> mTeam,

@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mb11.application.dao.cricapidata.MTeamDAO;
 import com.mb11.application.model.cricapidata.MTeam;
+import com.mb11.application.model.cricapidata.Sporttype;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -58,8 +59,8 @@ public class MTeamDaoImpl implements MTeamDAO {
 	@Override
 	public void updateMTeam(MTeam mTeam) {
 		MTeam mt=getMTeamById(mTeam.getID());
-		mt.setSporttype(mTeam.getSporttype());
-		mt.setTeamname(mTeam.getTeamname());
+		mt.setSporttype(Sporttype.Kabadi);
+	//	mt.setTeamname(mTeam.getTeamname());
 		entityManager.flush();
 	
 		

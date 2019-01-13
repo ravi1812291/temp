@@ -26,26 +26,38 @@ public class MTeamDaoImplTest {
 	/** The logger. */
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-/*	
 	
-	@Test
-	public void addMTeam()
-	{
-		mdi.addMTeam(new MTeam("Myteam1",Sporttype.Football));
-	}
 	
-	@Test
-	public void getAllMTeam()
-	{
-		mdi.getAllMTeam();
-	}
+//	@Test
+//	public void addMTeam()
+//	{
+//		mdi.addMTeam(new MTeam("Myteam2",Sporttype.Cricket,null));
+//	}
 	
-	@Test
-	public void getMTeamById()
-	{
-		mdi.getMTeamById(1L);
-	}
 	
-	*/
+	
+//	@Test
+//	public void getAllMTeam()
+//	{
+//		mdi.getAllMTeam();
+//	}
+	
+	
+//	
+//	@Test
+//	public void getMTeamById()
+//	{
+//		mdi.getMTeamById(1L);
+//	}
+//	
+//	@Test
+//	public void updateMTeam()
+//	{
+//		MTeam mTeam=new MTeam();
+//        mTeam.setID(1L);
+//		mdi.updateMTeam(mTeam);
+//	}
+//	
+	
 
 }

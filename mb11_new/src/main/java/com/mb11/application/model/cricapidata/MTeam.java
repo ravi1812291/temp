@@ -38,9 +38,9 @@ public class MTeam {
 	@Column(nullable = false)
 	private  List<Series> series=new ArrayList<>();
 	
-	@Column(nullable = false)
-	@OneToMany
-	private List<TeamPlayers> teamPlayers=new ArrayList<>();
+//	@Column(nullable = false)
+//	@OneToMany
+//	private List<TeamPlayers> teamPlayers=new ArrayList<>();
 	
 	/**
 	 * Instantiates a new m team.
@@ -49,75 +49,56 @@ public class MTeam {
 	
 		
 	}
+
+public MTeam(String teamname, Sporttype sporttype, List<Series> series) {
+	super();
+	this.teamname = teamname;
+	this.sporttype = sporttype;
+	this.series = series;
+}
+
+public MTeam(Long iD, String teamname, Sporttype sporttype, List<Series> series) {
+	super();
+	ID = iD;
+	this.teamname = teamname;
+	this.sporttype = sporttype;
+	this.series = series;
+}
+
+public Long getID() {
+	return ID;
+}
+
+public void setID(Long iD) {
+	ID = iD;
+}
+
+public String getTeamname() {
+	return teamname;
+}
+
+public void setTeamname(String teamname) {
+	this.teamname = teamname;
+}
+
+public Sporttype getSporttype() {
+	return sporttype;
+}
+
+public void setSporttype(Sporttype sporttype) {
+	this.sporttype = sporttype;
+}
+
+public List<Series> getSeries() {
+	return series;
+}
+
+public void setSeries(List<Series> series) {
+	this.series = series;
+}
 	
 	
 
-	public MTeam(String teamname, Sporttype sporttype, List<Series> series, List<TeamPlayers> teamPlayers) {
-		super();
-		this.teamname = teamname;
-		this.sporttype = sporttype;
-		this.series = series;
-		this.teamPlayers = teamPlayers;
-	}
 	
-	
-
-
-
-	public MTeam(Long iD, String teamname, Sporttype sporttype, List<Series> series, List<TeamPlayers> teamPlayers) {
-		super();
-		ID = iD;
-		this.teamname = teamname;
-		this.sporttype = sporttype;
-		this.series = series;
-		this.teamPlayers = teamPlayers;
-	}
-
-
-
-	public Long getID() {
-		return ID;
-	}
-
-	public void setID(Long iD) {
-		ID = iD;
-	}
-
-	public String getTeamname() {
-		return teamname;
-	}
-
-	public void setTeamname(String teamname) {
-		this.teamname = teamname;
-	}
-
-	public Sporttype getSporttype() {
-		return sporttype;
-	}
-
-	public void setSporttype(Sporttype sporttype) {
-		this.sporttype = sporttype;
-	}
-
-	public List<Series> getSeries() {
-		return series;
-	}
-
-	public void setSeries(List<Series> series) {
-		this.series = series;
-	}
-
-	public List<TeamPlayers> getTeamPlayers() {
-		return teamPlayers;
-	}
-
-	public void setTeamPlayers(List<TeamPlayers> teamPlayers) {
-		this.teamPlayers = teamPlayers;
-	}
-
-	
-	
-	
-	  
 
 }

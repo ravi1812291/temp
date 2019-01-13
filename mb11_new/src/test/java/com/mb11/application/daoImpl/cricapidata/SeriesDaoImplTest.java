@@ -29,32 +29,46 @@ public class SeriesDaoImplTest {
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	@Test
-	public void getAllSeries()
-	{
-		logger.info("Full Series -> {}", sr.getAllSeries());
-		
-	}
-/*	
+	
+	
 	
 	@Test
 	public void addSeries()
 	{
-		sr.addSeries(new Series("test1","test1",new Date(),new Date(),11));
+		sr.addSeries(new Series("test7","test7",new Date(),new Date(),11));
 	}
 	
-	@Test
-	public void getSeriesWrtStartAndEndDate() {
-		
-		sr.getSeriesWrtStartAndEndDate(new Date(), new Date());
-	}
+//	@Test
+//	public void getAllSeries()
+//	{
+//		logger.info("Full Series -> {}", sr.getAllSeries());
+//		
+//	}
+//	
+//	
+//	 
+//	@Test
+//	public void getSeriesWrtStartAndEndDate() {
+//		
+//		sr.getSeriesWrtStartAndEndDate(new Date(), new Date());
+//	}
 	
-	@Test
-	public void removeSeries() {
-		
-		sr.deleteSeries(1L);
-	}
-	*/
+//
+//	@Test
+//	public void removeSeries() {
+//		
+//		sr.deleteSeries(4L);
+//	}   
+//	
+//	
+//	@Test
+//	public void updateSeries()
+//	{
+//		Series series=new Series();
+//		series.setID(4L);
+//		sr.updateSeries(series);
+//	}
+	
 	
 	
 	

@@ -82,9 +82,6 @@ public class SeriesDaoImpl implements SeriesDAO{
 		Series sr = getSeriesById(series.getID());
 		sr.setSname("xyz");
 		
-		//usr.setFirstname(Series.getFirstname());
-//		artcl.setTitle(article.getTitle());
-//		artcl.setCategory(article.getCategory());
 		entityManager.flush();
 		
 	}
