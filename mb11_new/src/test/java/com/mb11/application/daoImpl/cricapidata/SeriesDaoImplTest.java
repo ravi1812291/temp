@@ -33,20 +33,20 @@ public class SeriesDaoImplTest {
 	
 	
 	
-	@Test
-	@Transactional
-	public void addSeries()
-	{
-		sr.addSeries(new Series("test7","test7",new Date(),new Date(),11));
-	}
-	
 //	@Test
 //	@Transactional
-//	public void getAllSeries()
+//	public void addSeries()
 //	{
-//		logger.info("Full Series -> {}", sr.getAllSeries());
-//		
+//		sr.addSeries(new Series("test8","test8",new Date(),new Date(),12));
 //	}
+	
+	@Test
+	@Transactional
+	public void getAllSeries()
+	{
+		logger.info("Full Series -> {}", sr.getAllSeries());
+		
+	}
 //	
 //	
 //	 
@@ -62,7 +62,7 @@ public class SeriesDaoImplTest {
 //	@Transactional
 //	public void removeSeries() {
 //		
-//		sr.deleteSeries(4L);
+//		sr.deleteSeries(1L);
 //	}   
 //	
 //	
@@ -71,7 +71,7 @@ public class SeriesDaoImplTest {
 //	public void updateSeries()
 //	{
 //		Series series=new Series();
-//		series.setID(4L);
+//		series.setID(5L);
 //		sr.updateSeries(series);
 //	}
 	

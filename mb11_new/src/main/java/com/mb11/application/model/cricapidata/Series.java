@@ -215,6 +215,18 @@ public class Series {
 		this.teamPlayers = teamPlayers;
 	}
 
+
+
+
+
+
+	@Override
+	public String toString() {
+		return "Series [ID=" + ID + ", seriesId=" + seriesId + ", sname=" + sname + ", startdate=" + startdate
+				+ ", enddate=" + enddate + ", totalmatch=" + totalmatch + ", mTeam=" + mTeam + ", teamPlayers="
+				+ teamPlayers + "]";
+	}
+
 		   
 
 }

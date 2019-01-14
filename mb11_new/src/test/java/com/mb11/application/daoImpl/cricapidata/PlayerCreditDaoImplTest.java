@@ -3,6 +3,7 @@ package com.mb11.application.daoImpl.cricapidata;
 import static org.junit.Assert.*;
 
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,11 +33,12 @@ public class PlayerCreditDaoImplTest {
 //		pdi.addPlayerCredit(new PlayerCredit());
 //	}
 //	
-//	@Test
-//	public void getAllPlayerCredit()
-//	{
-//		pdi.addPlayerCredit(new PlayerCredit());
-//	}
+	@Test
+	@Transactional
+	public void getAllPlayerCredit()
+	{
+		pdi.addPlayerCredit(new PlayerCredit());
+	}
 //	
 //	@Test
 //	public void getAllPlayerCreditById()

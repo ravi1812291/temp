@@ -26,13 +26,13 @@ public class MatchTeamLinkDaoImplTest {
 	EntityManager em;
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-//	
-//	@Test
-//	@Transactional
-//	public void getAllMatchTeamLink()
-//	{
-//		mdi.getAllMatchTeamLink();
-//	}
+	
+	@Test
+	@Transactional
+	public void getAllMatchTeamLink()
+	{
+		mdi.getAllMatchTeamLink();
+	}
 //	
 //	@Test
 //	@Transactional

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,11 +31,12 @@ public class SeriesTeamLinkDaoImplTest {
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-//	@Test
-//	public void getAllSeriesTeamLink()
-//	{
-//		sri.getAllSeriesTeamLink();
-//	}
+	@Test
+	@Transactional
+	public void getAllSeriesTeamLink()
+	{
+		sri.getAllSeriesTeamLink();
+	}
 //	
 //	@Test
 //	public void getAllSeriesTeamLinkById()

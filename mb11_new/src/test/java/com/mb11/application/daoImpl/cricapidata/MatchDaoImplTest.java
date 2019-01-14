@@ -35,12 +35,12 @@ public class MatchDaoImplTest {
 //	}
 //	
 //	
-//	@Test
-//	@Transactional
-//	public void getAllMatch()
-//	{
-//		mdi.getAllMatch();
-//	}
+	@Test
+	@Transactional
+	public void getAllMatch()
+	{
+		mdi.getAllMatch();
+	}
 //	
 //	@Test
 //	@Transactional

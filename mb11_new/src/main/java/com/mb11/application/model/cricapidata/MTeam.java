@@ -100,6 +100,11 @@ public List<Series> getSeries() {
 public void setSeries(List<Series> series) {
 	this.series = series;
 }
+
+@Override
+public String toString() {
+	return "MTeam [ID=" + ID + ", teamname=" + teamname + ", sporttype=" + sporttype + ", series=" + series + "]";
+}
 	
 	
 

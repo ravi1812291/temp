@@ -3,6 +3,7 @@ package com.mb11.application.daoImpl.cricapidata;
 import static org.junit.Assert.*;
 
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,11 +27,12 @@ public class SeriesTeamPlayerDaoImplTest {
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-//	@Test
-//	public void getSeriesTeamPlayer()
-//	{
-//		sri.getAllSeriesTeamPlayer();
-//	}
+	@Test
+	@Transactional
+	public void getSeriesTeamPlayer()
+	{
+		sri.getAllSeriesTeamPlayer();
+	}
 //	
 //	@Test
 //	public void getSeriesTeamPlayerById()

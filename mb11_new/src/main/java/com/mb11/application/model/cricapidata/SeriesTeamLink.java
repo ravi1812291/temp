@@ -145,6 +145,14 @@ public class SeriesTeamLink {
 		this.series = series;
 	}
 
+
+	@Override
+	public String toString() {
+		return "SeriesTeamLink [ID=" + ID + ", mTeam=" + mTeam + ", series=" + series + "]";
+	}
+	
+	
+
 	
 	
 	

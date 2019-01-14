@@ -38,12 +38,13 @@ public class MTeamDaoImplTest {
 	
 	
 	
-//	@Test
-//	@Transactional
-//	public void getAllMTeam()
-//	{
-//		mdi.getAllMTeam();
-//	}
+	@Test
+	@Transactional
+	public void getAllMTeam()
+	{
+		logger.info("All Teams -> {}",mdi.getAllMTeam());
+		
+	}
 	
 	
 //	
