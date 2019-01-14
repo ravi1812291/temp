@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.mb11.application.model.cricapidata.TeamPlayers;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class TeamPlayerDaoImplTest {
@@ -23,6 +25,37 @@ public class TeamPlayerDaoImplTest {
 	EntityManager em;
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
+//	@Test
+//	public void getAllTeamPlayers()
+//	{
+//		tpi.getAllTeamPlayers();
+//	}
+//	
+//	@Test
+//	public void getAllTeamPlayersById()
+//	{
+//		tpi.getTeamPlayersById(1L);
+//	}
+//	
+//	@Test
+//	public void AddTeamPlayers()
+//	{
+//	 
+//		tpi.addTeamPlayers(new TeamPlayers());
+//	}
+//	
+//	@Test
+//	public void removeTeamPlayers()
+//	{
+//	 
+//		tpi.deleteTeamPlayers(1L);
+//	}
+//	
+	
+   
+	
+	
 	
 
 }

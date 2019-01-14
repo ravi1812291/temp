@@ -28,30 +28,30 @@ import javax.validation.constraints.NotNull;
 public class Series {
 	   
 	   /** The id. */
-   	@Id
+   	   @Id
 	   @GeneratedValue(strategy=GenerationType.IDENTITY)
 	   @Column(name="id")
 	   private long ID; 
 	   
 	   /** The series id. */
-   	@NotNull
+   	   @NotNull
 	   @Column(name="seriesid",unique = true,length=30)
 	   private String seriesId;
 	   
 	   /** The sname. */
-   	@Column(nullable = false,length=30)
+   	   @Column(nullable = false,length=30)
 	   private String sname;
 	   
 	   /** The startdate. */
-   	@Column(nullable = false)
+   	   @Column(nullable = false)
 	   private Date startdate;
 	   
 	   /** The enddate. */
-   	@Column(nullable = false)
+   	   @Column(nullable = false)
 	   private Date enddate;
 	   
 	   /** The totalmatch. */
-   	@Column(nullable = false)
+   	   @Column(nullable = false)
 	   private int totalmatch;
    	
    	@ManyToMany

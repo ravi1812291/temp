@@ -30,17 +30,17 @@ public class SeriesTeamLinkDaoImplTest {
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	@Test
-	public void getAllSeriesTeamLink()
-	{
-		sri.getAllSeriesTeamLink();
-	}
-	
-	@Test
-	public void getAllSeriesTeamLinkById()
-	{
-		sri.getSeriesTeamLinkById(1L);
-	}
+//	@Test
+//	public void getAllSeriesTeamLink()
+//	{
+//		sri.getAllSeriesTeamLink();
+//	}
+//	
+//	@Test
+//	public void getAllSeriesTeamLinkById()
+//	{
+//		sri.getSeriesTeamLinkById(1L);
+//	}
 	
 	
 	
