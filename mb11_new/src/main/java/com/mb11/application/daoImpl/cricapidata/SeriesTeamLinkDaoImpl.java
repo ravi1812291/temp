@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mb11.application.dao.cricapidata.SeriesTeamLinkDAO;
+import com.mb11.application.model.cricapidata.MTeam;
 import com.mb11.application.model.cricapidata.Series;
 import com.mb11.application.model.cricapidata.SeriesTeamLink;
 
@@ -54,7 +55,16 @@ public class SeriesTeamLinkDaoImpl implements SeriesTeamLinkDAO {
 	@Override
 	public void addSeriesTeamLink(SeriesTeamLink seriesTeamLink) {
 		
-		entityManager.persist(seriesTeamLink);
+		List<MTeam> m=seriesTeamLink.getmTeam();
+		entityManager.persist(m);
+		
+		List<Series> s=seriesTeamLink.getSeries();
+		entityManager.persist(s);
+		
+		SeriesTeamLink seriesTeamLink1=new SeriesTeamLink(m,s);
+		
+		
+		entityManager.persist(seriesTeamLink1);
 		
 	}
 

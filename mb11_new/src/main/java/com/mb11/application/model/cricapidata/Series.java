@@ -127,6 +127,15 @@ public class Series {
 
 
 
+	public Series(long Id) {
+		this.ID=Id;
+	}
+
+
+
+
+
+
 	public long getID() {
 		return ID;
 	}

@@ -130,6 +130,8 @@ public class SeriesTeamLink {
 	public List<Series> getSeries() {
 		return series;
 	}
+	
+	
 
 
 

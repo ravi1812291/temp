@@ -65,6 +65,10 @@ public MTeam(Long iD, String teamname, Sporttype sporttype, List<Series> series)
 	this.series = series;
 }
 
+public MTeam(long Id) {
+	this.ID=Id;
+}
+
 public Long getID() {
 	return ID;
 }
