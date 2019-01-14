@@ -3,6 +3,7 @@ package com.mb11.application.daoImpl.cricapidata;
 import static org.junit.Assert.*;
 
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,6 +30,7 @@ public class MTeamDaoImplTest {
 	
 	
 //	@Test
+//	@Transactional
 //	public void addMTeam()
 //	{
 //		mdi.addMTeam(new MTeam("Myteam2",Sporttype.Cricket,null));
@@ -37,6 +39,7 @@ public class MTeamDaoImplTest {
 	
 	
 //	@Test
+//	@Transactional
 //	public void getAllMTeam()
 //	{
 //		mdi.getAllMTeam();
@@ -45,12 +48,14 @@ public class MTeamDaoImplTest {
 	
 //	
 //	@Test
+//	@Transactional
 //	public void getMTeamById()
 //	{
 //		mdi.getMTeamById(1L);
 //	}
 //	
 //	@Test
+//	@Transactional
 //	public void updateMTeam()
 //	{
 //		MTeam mTeam=new MTeam();

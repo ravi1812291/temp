@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.Date;
 
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,12 +34,14 @@ public class SeriesDaoImplTest {
 	
 	
 	@Test
+	@Transactional
 	public void addSeries()
 	{
 		sr.addSeries(new Series("test7","test7",new Date(),new Date(),11));
 	}
 	
 //	@Test
+//	@Transactional
 //	public void getAllSeries()
 //	{
 //		logger.info("Full Series -> {}", sr.getAllSeries());
@@ -48,6 +51,7 @@ public class SeriesDaoImplTest {
 //	
 //	 
 //	@Test
+//	@Transactional
 //	public void getSeriesWrtStartAndEndDate() {
 //		
 //		sr.getSeriesWrtStartAndEndDate(new Date(), new Date());
@@ -55,6 +59,7 @@ public class SeriesDaoImplTest {
 	
 //
 //	@Test
+//	@Transactional
 //	public void removeSeries() {
 //		
 //		sr.deleteSeries(4L);
@@ -62,6 +67,7 @@ public class SeriesDaoImplTest {
 //	
 //	
 //	@Test
+//	@Transactional
 //	public void updateSeries()
 //	{
 //		Series series=new Series();
