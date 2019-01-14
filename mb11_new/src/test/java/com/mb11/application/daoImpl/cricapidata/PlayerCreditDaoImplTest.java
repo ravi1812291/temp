@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.mb11.application.model.cricapidata.PlayerCredit;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class PlayerCreditDaoImplTest {
@@ -23,6 +25,31 @@ public class PlayerCreditDaoImplTest {
 	EntityManager em;
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
+//	@Test
+//	public void addPlayerCredit()
+//	{
+//		pdi.addPlayerCredit(new PlayerCredit());
+//	}
+//	
+//	@Test
+//	public void getAllPlayerCredit()
+//	{
+//		pdi.addPlayerCredit(new PlayerCredit());
+//	}
+//	
+//	@Test
+//	public void getAllPlayerCreditById()
+//	{
+//		pdi.getPlayerCreditById(1L);
+//	}
+//	
+//	@Test
+//	public void removeAllPlayerCredit()
+//	{
+//		pdi.deletePlayerCredit(1L);
+//	}
+	
 
 	
 
