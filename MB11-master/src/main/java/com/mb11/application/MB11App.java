@@ -23,8 +23,8 @@ public class MB11App implements CommandLineRunner
 	@Override
 	public void run(String... args) throws Exception {
 		
-	//	es.getSeries("2018");
-		es.getMatches(111146L);
+		es.getSeries("2018");
+		//es.getMatches(111146L);
 		
 	}
 }

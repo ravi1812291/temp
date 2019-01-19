@@ -2,6 +2,7 @@ package com.mb11.application.service.sport;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -14,6 +15,8 @@ import com.mb11.application.payload.admin.sport.Series;
 import com.mb11.application.sport.helper.SportAPIHelper;
 
 import net.minidev.json.JSONObject;
+
+
 
 @Service
 public class EntitySportAPIService {
@@ -34,13 +37,42 @@ public class EntitySportAPIService {
 		baseUrl.append("/"+competitionsUrl);
 		baseUrl.append("?token="+RestTemplateConfig.apiTocken);
 		
-		JSONObject jsonObject = restTemplate.getForObject(baseUrl.toString(), JSONObject.class);
+
 		
-		System.out.println(jsonObject.toJSONString());
+		JSONObject jsonObject = restTemplate.getForObject(baseUrl.toString(),JSONObject.class);
+		
+	
+		
+		
+		System.out.println(jsonObject);
+		
+		System.out.println(jsonObject.get("datetime"));
+		
 		
 		return null;
 		
 	}
+	
+	/*
+	
+public List<Series> getSeries(String year) {
+		
+		competitionsUrl=apiHelper.getSeriesApi(year);
+		
+		StringBuilder baseUrl = RestTemplateConfig.getBaseURL();
+		baseUrl.append("/"+competitionsUrl);
+		baseUrl.append("?token="+RestTemplateConfig.apiTocken);
+		
+		JSONObject jsonObject = restTemplate.getForObject(baseUrl.toString(), JSONObject.class);
+		
+		System.out.println(jsonObject.toJSONString());
+		
+		
+	//	System.out.println(cid);
+		
+		return null;
+		
+	} */
 	
 public List<MTeam> getTeams(Long id) {
 		
@@ -52,7 +84,7 @@ public List<MTeam> getTeams(Long id) {
 		
 		JSONObject jsonObject = restTemplate.getForObject(baseUrl.toString(), JSONObject.class);
 		
-		System.out.println(jsonObject.toJSONString());
+	//	System.out.println(jsonObject.toJSONString());
 		
 		return null;
 		
@@ -68,7 +100,7 @@ public List<Match> getMatches(Long id) {
 	
 	JSONObject jsonObject = restTemplate.getForObject(baseUrl.toString(), JSONObject.class);
 	
-	System.out.println(jsonObject.toJSONString());
+	//System.out.println(jsonObject.toJSONString());
 	
 	return null;
 	
@@ -84,7 +116,7 @@ public List<TeamPlayers> getTeamPlayers(Long id) {
 	
 	JSONObject jsonObject = restTemplate.getForObject(baseUrl.toString(), JSONObject.class);
 	
-	System.out.println(jsonObject.toJSONString());
+//	System.out.println(jsonObject.toJSONString());
 	
 	return null;
 	
