@@ -20,19 +20,19 @@ public class SportAPIHelper {
 	public String getTeamsApi(Long id)
 	{
 		//https://rest.entitysport.com/v2/competitions/90534/teams?token=ec471071441bb2ac538a0ff901abd249
-		return "/competitions/"+id+"teams";
+		return "/competitions/"+id+"/teams";
 	}
 	
 	public String getMatchesApi(Long id)
 	{
 		//https://rest.entitysport.com/v2/competitions/90534/matches?token=ec471071441bb2ac538a0ff901abd249
-				return "/competitions/"+id+"matches";
+				return "/competitions/"+id+"/matches";
 	}
 	
 	public String getPlayersApi(Long id)
 	{
 		//https://rest.entitysport.com/v2/competitions/90534/squads?token=ec471071441bb2ac538a0ff901abd249
-		return "/competitions/"+id+"squads";
+		return "/competitions/"+id+"/squads";
 	}
 	
 	
