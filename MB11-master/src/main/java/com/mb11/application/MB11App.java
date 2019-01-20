@@ -30,9 +30,9 @@ public class MB11App implements CommandLineRunner
 	@Override
 	public void run(String... args) throws Exception {
 		
-		List<Series> ls=es.getSeries("2018");
+		List<Series> ls=es.getSeries("201819");
 		System.out.println(ls.size());
-		sr.saveAll(ls);
+		//sr.saveAll(ls);
 		//es.getMatches(111146L);
 		
 	}

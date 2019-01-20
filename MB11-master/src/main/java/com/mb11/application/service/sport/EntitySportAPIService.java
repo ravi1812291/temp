@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -16,7 +15,6 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
-
 
 import com.mb11.application.config.RestTemplateConfig;
 import com.mb11.application.model.cricapidata.MTeam;
@@ -30,145 +28,117 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
-
 @Service
 public class EntitySportAPIService {
 
 	@Autowired
-    RestTemplate restTemplate;
-	
+	private RestTemplate restTemplate;
+
 	@Autowired
-	SportAPIHelper apiHelper;
-	
+	private SportAPIHelper apiHelper;
+
+	private HttpHeaders headers;
+
+	private HttpEntity entity;
+
+	private ResponseEntity<String> response;
+
+	private DateFormat formatter;
+
+	private Date startdate;
+
+	private Date enddate;
+
+	private Long cid;
+
 	private String competitionsUrl;
 
 	public List<Series> getSeries(String year) throws JSONException, ParseException {
-		
-		competitionsUrl=apiHelper.getSeriesApi(year);
-		
+
+		competitionsUrl = apiHelper.getSeriesApi(year);
+
 		StringBuilder baseUrl = RestTemplateConfig.getBaseURL();
-		baseUrl.append("/"+competitionsUrl);
-		baseUrl.append("?token="+RestTemplateConfig.apiTocken);
-		
-		HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        
-		HttpEntity entity = new HttpEntity(headers);
-		
-	//	JSONObject jsonObject = restTemplate.getForObject(baseUrl.toString(),JSONObject.class);
-		
-		//String jsonObject = restTemplate.getForObject(baseUrl.toString(),String.class);
-		
-		 ResponseEntity<String> response =  restTemplate.exchange(baseUrl.toString(),HttpMethod.GET, entity,String.class);
-		 JSONObject myResponse = new JSONObject(response.getBody());
-		 
-		 System.out.println("Response is-----  "+myResponse);
-		 System.out.println();
-		 JSONArray jsonResults = myResponse.getJSONObject("response").getJSONArray("items");
-		 System.out.println("JSON ARRAY IS........ "+jsonResults);
-		 List<Series> lseries=new ArrayList<>();
-		 
-		 for(int i=0; i < jsonResults.length();i++)
-		 {
-			 DateFormat formatter = new SimpleDateFormat("yyyy-MM-DD"); 
-			 Date startdate = (Date)formatter.parse(jsonResults.getJSONObject(i).getString("datestart"));
-			 Date enddate=(Date)formatter.parse(jsonResults.getJSONObject(i).getString("dateend"));
-			  Long cid=jsonResults.getJSONObject(i).getLong("cid");
-			 lseries.add(
-					 new Series(
-							Long.toString(cid),
-							 jsonResults.getJSONObject(i).getString("title"),
-							 jsonResults.getJSONObject(i).getString("abbr"),
-							 jsonResults.getJSONObject(i).getString("category"),
-							 startdate,enddate,
-							 jsonResults.getJSONObject(i).getInt("total_matches"),
-							 jsonResults.getJSONObject(i).getInt("total_teams"),
-							 false
-							 )
-					 );
-			
-			 System.out.println(jsonResults.getJSONObject(i).getLong("cid"));
-			 System.out.println(jsonResults.getJSONObject(i).getString("title"));
-			 System.out.println(jsonResults.getJSONObject(i).getString("abbr"));
-		
-		 }
-		
-		
+		baseUrl.append("/" + competitionsUrl);
+		baseUrl.append("?token=" + RestTemplateConfig.apiTocken);
+
+		headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+
+		entity = new HttpEntity(headers);
+
+		response = restTemplate.exchange(baseUrl.toString(), HttpMethod.GET, entity, String.class);
+		JSONObject myResponse = new JSONObject(response.getBody());
+
+		System.out.println("Response is-----  " + myResponse);
+		System.out.println();
+		JSONArray jsonResults = myResponse.getJSONObject("response").getJSONArray("items");
+		System.out.println("JSON ARRAY IS........ " + jsonResults);
+		List<Series> lseries = new ArrayList<>();
+
+		for (int i = 0; i < jsonResults.length(); i++) {
+			formatter = new SimpleDateFormat("yyyy-MM-DD");
+			startdate = (Date) formatter.parse(jsonResults.getJSONObject(i).getString("datestart"));
+			enddate = (Date) formatter.parse(jsonResults.getJSONObject(i).getString("dateend"));
+			Long cid = jsonResults.getJSONObject(i).getLong("cid");
+			lseries.add(new Series(Long.toString(cid), jsonResults.getJSONObject(i).getString("title"),
+					jsonResults.getJSONObject(i).getString("abbr"), jsonResults.getJSONObject(i).getString("category"),
+					startdate, enddate, jsonResults.getJSONObject(i).getInt("total_matches"),
+					jsonResults.getJSONObject(i).getInt("total_teams"), false));
+
+		}
+
 		return lseries;
-		
-	}
-	
-	/*
-	
-public List<Series> getSeries(String year) {
-		
-		competitionsUrl=apiHelper.getSeriesApi(year);
-		
-		StringBuilder baseUrl = RestTemplateConfig.getBaseURL();
-		baseUrl.append("/"+competitionsUrl);
-		baseUrl.append("?token="+RestTemplateConfig.apiTocken);
-		
-		JSONObject jsonObject = restTemplate.getForObject(baseUrl.toString(), JSONObject.class);
-		
-		System.out.println(jsonObject.toJSONString());
-		
-		
-	//	System.out.println(cid);
-		
-		return null;
-		
-	} */
-	
-public List<MTeam> getTeams(Long id) {
-		
-		competitionsUrl=apiHelper.getTeamsApi(1L);
-		
-		StringBuilder baseUrl = RestTemplateConfig.getBaseURL();
-		baseUrl.append("/"+competitionsUrl);
-		baseUrl.append("?token="+RestTemplateConfig.apiTocken);
-		
-		JSONObject jsonObject = restTemplate.getForObject(baseUrl.toString(), JSONObject.class);
-		
-	//	System.out.println(jsonObject.toJSONString());
-		
-		return null;
-		
+
 	}
 
-public List<Match> getMatches(Long id) {
 	
-	competitionsUrl=apiHelper.getMatchesApi(id);
-	
-	StringBuilder baseUrl = RestTemplateConfig.getBaseURL();
-	baseUrl.append("/"+competitionsUrl);
-	baseUrl.append("?token="+RestTemplateConfig.apiTocken);
-	
-	JSONObject jsonObject = restTemplate.getForObject(baseUrl.toString(), JSONObject.class);
-	
-	//System.out.println(jsonObject.toJSONString());
-	
-	return null;
-	
-}
 
-public List<TeamPlayers> getTeamPlayers(Long id) {
-	
-	competitionsUrl=apiHelper.getPlayersApi(id);
-	
-	StringBuilder baseUrl = RestTemplateConfig.getBaseURL();
-	baseUrl.append("/"+competitionsUrl);
-	baseUrl.append("?token="+RestTemplateConfig.apiTocken);
-	
-	JSONObject jsonObject = restTemplate.getForObject(baseUrl.toString(), JSONObject.class);
-	
-//	System.out.println(jsonObject.toJSONString());
-	
-	return null;
-	
-}
+	public List<MTeam> getTeams(Long id) {
 
+		competitionsUrl = apiHelper.getTeamsApi(1L);
 
+		StringBuilder baseUrl = RestTemplateConfig.getBaseURL();
+		baseUrl.append("/" + competitionsUrl);
+		baseUrl.append("?token=" + RestTemplateConfig.apiTocken);
 
+		JSONObject jsonObject = restTemplate.getForObject(baseUrl.toString(), JSONObject.class);
+
+		// System.out.println(jsonObject.toJSONString());
+
+		return null;
+
+	}
+
+	public List<Match> getMatches(Long id) {
+
+		competitionsUrl = apiHelper.getMatchesApi(id);
+
+		StringBuilder baseUrl = RestTemplateConfig.getBaseURL();
+		baseUrl.append("/" + competitionsUrl);
+		baseUrl.append("?token=" + RestTemplateConfig.apiTocken);
+
+		JSONObject jsonObject = restTemplate.getForObject(baseUrl.toString(), JSONObject.class);
+
+		// System.out.println(jsonObject.toJSONString());
+
+		return null;
+
+	}
+
+	public List<TeamPlayers> getTeamPlayers(Long id) {
+
+		competitionsUrl = apiHelper.getPlayersApi(id);
+
+		StringBuilder baseUrl = RestTemplateConfig.getBaseURL();
+		baseUrl.append("/" + competitionsUrl);
+		baseUrl.append("?token=" + RestTemplateConfig.apiTocken);
+
+		JSONObject jsonObject = restTemplate.getForObject(baseUrl.toString(), JSONObject.class);
+
+		// System.out.println(jsonObject.toJSONString());
+
+		return null;
+
+	}
 
 }
