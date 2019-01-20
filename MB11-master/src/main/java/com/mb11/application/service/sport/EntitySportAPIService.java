@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -59,16 +60,16 @@ public class EntitySportAPIService {
 
 		competitionsUrl = apiHelper.getSeriesApi(year);
 
-		StringBuilder baseUrl = RestTemplateConfig.getBaseURL();
-		baseUrl.append("/" + competitionsUrl);
-		baseUrl.append("?token=" + RestTemplateConfig.apiTocken);
+//		StringBuilder baseUrl = RestTemplateConfig.getBaseURL();
+//		baseUrl.append("/" + competitionsUrl);
+//		baseUrl.append("?token=" + RestTemplateConfig.apiTocken);
 
 		headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
 		entity = new HttpEntity(headers);
 
-		response = restTemplate.exchange(baseUrl.toString(), HttpMethod.GET, entity, String.class);
+		response = restTemplate.exchange(competitionsUrl, HttpMethod.GET, entity, String.class);
 		JSONObject myResponse = new JSONObject(response.getBody());
 
 		System.out.println("Response is-----  " + myResponse);
@@ -99,16 +100,12 @@ public class EntitySportAPIService {
 
 		competitionsUrl = apiHelper.getTeamsApi(id);
 
-		StringBuilder baseUrl = RestTemplateConfig.getBaseURL();
-		baseUrl.append("/" + competitionsUrl);
-		baseUrl.append("?token=" + RestTemplateConfig.apiTocken);
-
 		headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
 		entity = new HttpEntity(headers);
 
-		response = restTemplate.exchange(baseUrl.toString(), HttpMethod.GET, entity, String.class);
+		response = restTemplate.exchange(competitionsUrl, HttpMethod.GET, entity, String.class);
 		JSONObject myResponse = new JSONObject(response.getBody());
 
 		System.out.println("Response is-----  " + myResponse);
@@ -120,10 +117,6 @@ public class EntitySportAPIService {
 
 		for (int i = 0; i < jsonResults.length(); i++)
 		{
-			//public MTeam(Long teamid, String teamname, String teamabbr, String logo_url, String sex,
-			//Sporttype sporttype,
-				//	Set<Series> series)
-			
 			
 			lteams.add(new MTeam(
 					jsonResults.getJSONObject(i).getLong("tid"),
@@ -145,13 +138,16 @@ public class EntitySportAPIService {
 
 		competitionsUrl = apiHelper.getMatchesApi(id);
 
-		StringBuilder baseUrl = RestTemplateConfig.getBaseURL();
-		baseUrl.append("/" + competitionsUrl);
-		baseUrl.append("?token=" + RestTemplateConfig.apiTocken);
+		headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
 
-		JSONObject jsonObject = restTemplate.getForObject(baseUrl.toString(), JSONObject.class);
+		entity = new HttpEntity(headers);
 
-		// System.out.println(jsonObject.toJSONString());
+		response = restTemplate.exchange(competitionsUrl, HttpMethod.GET, entity, String.class);
+		JSONObject myResponse = new JSONObject(response.getBody());
+
+		System.out.println("Response is-----  " + myResponse);
+		System.out.println();
 
 		return null;
 
@@ -161,13 +157,16 @@ public class EntitySportAPIService {
 
 		competitionsUrl = apiHelper.getPlayersApi(id);
 
-		StringBuilder baseUrl = RestTemplateConfig.getBaseURL();
-		baseUrl.append("/" + competitionsUrl);
-		baseUrl.append("?token=" + RestTemplateConfig.apiTocken);
+		headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
 
-		JSONObject jsonObject = restTemplate.getForObject(baseUrl.toString(), JSONObject.class);
+		entity = new HttpEntity(headers);
 
-		// System.out.println(jsonObject.toJSONString());
+		response = restTemplate.exchange(competitionsUrl, HttpMethod.GET, entity, String.class);
+		JSONObject myResponse = new JSONObject(response.getBody());
+
+		System.out.println("Response is-----  " + myResponse);
+		System.out.println();
 
 		return null;
 
