@@ -1,6 +1,7 @@
 package com.mb11.application;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -35,7 +36,16 @@ public class MB11App implements CommandLineRunner
 	@Override
 	public void run(String... args) throws Exception {
 		
-		List<Series> ls=es.getSeries("201819");
+	List<Series> ls=es.getSeriesAndTeams("201819");
+	sr.saveAll(ls);
+		
+//		for(Series s:ls)
+//		{
+//			String series_id=s.getSeriesId();
+//			System.out.println(series_id); 
+//			
+//					
+//		}
 		
 		
 		//System.out.println(ls.size());
@@ -45,7 +55,7 @@ public class MB11App implements CommandLineRunner
 	//	List<MTeam> mt=es.getTeams(111297L);
 	//	mtr.saveAll(mt);
 		
-		es.getMatches(111297L);
+		//es.getMatches(111297L);
 		
 		
 	}

@@ -27,7 +27,8 @@ public class MTeam {
 	private Long teamid;
 
 	/** The teamname. */
-	@Column(nullable = false, unique = true)
+	//@Column(nullable = false, unique = true)
+	@Column(nullable = false)
 	private String teamname;
 	
 	@Column(nullable = false,length=30)
