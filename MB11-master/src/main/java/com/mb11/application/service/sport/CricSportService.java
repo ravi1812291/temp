@@ -38,14 +38,6 @@ public class CricSportService {
 
 	private ResponseEntity<String> response;
 
-	private DateFormat formatter;
-
-	private Date startdate;
-
-	private Date enddate;
-
-	private Long cid;
-
 	private String competitionsUrl;
 	
 	public Set<MTeam> getTeamsWithSet(Long id) {
