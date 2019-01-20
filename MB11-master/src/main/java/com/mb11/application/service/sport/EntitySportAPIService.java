@@ -60,10 +60,6 @@ public class EntitySportAPIService {
 
 		competitionsUrl = apiHelper.getSeriesApi(year);
 
-//		StringBuilder baseUrl = RestTemplateConfig.getBaseURL();
-//		baseUrl.append("/" + competitionsUrl);
-//		baseUrl.append("?token=" + RestTemplateConfig.apiTocken);
-
 		headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
@@ -73,7 +69,7 @@ public class EntitySportAPIService {
 		JSONObject myResponse = new JSONObject(response.getBody());
 
 		System.out.println("Response is-----  " + myResponse);
-		System.out.println();
+	
 		JSONArray jsonResults = myResponse.getJSONObject("response").getJSONArray("items");
 		System.out.println("JSON ARRAY IS........ " + jsonResults);
 		List<Series> lseries = new ArrayList<>();
@@ -109,7 +105,7 @@ public class EntitySportAPIService {
 		JSONObject myResponse = new JSONObject(response.getBody());
 
 		System.out.println("Response is-----  " + myResponse);
-		System.out.println();
+	
 		
 		JSONArray jsonResults = myResponse.getJSONObject("response").getJSONArray("teams");
 		System.out.println("JSON ARRAY IS........ " + jsonResults);
