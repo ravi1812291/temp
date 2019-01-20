@@ -72,6 +72,23 @@ public class Series {
 	
 	}
 
+	
+	
+	public Series(@NotNull String seriesId, String sname, String short_name, String category, Date startdate,
+			Date enddate, int totalmatch, int totalteams,Boolean status) {
+		super();
+		this.seriesId = seriesId;
+		this.sname = sname;
+		this.short_name = short_name;
+		this.category = category;
+		this.startdate = startdate;
+		this.enddate = enddate;
+		this.totalmatch = totalmatch;
+		this.totalteams = totalteams;
+		this.status=status;
+		
+	}
+	
 	public Series(@NotNull String seriesId, String sname, String short_name, String category, Date startdate,
 			Date enddate, int totalmatch, int totalteams, Boolean status, Set<MTeam> mTeams) {
 		super();
@@ -86,6 +103,8 @@ public class Series {
 		this.status = status;
 		this.mTeams = mTeams;
 	}
+	
+
 
 	public long getID() {
 		return ID;

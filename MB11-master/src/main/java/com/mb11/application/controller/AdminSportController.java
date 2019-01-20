@@ -1,11 +1,13 @@
 package com.mb11.application.controller;
 
 import java.sql.Date;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.websocket.server.PathParam;
 
+import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +26,7 @@ public class AdminSportController {
 	EntitySportAPIService sportAPIService;
 
 	@GetMapping("/series")
-	public ResponseEntity<?> getSeriesBtnTime(Date toDate, Date fromDate) {
+	public ResponseEntity<?> getSeriesBtnTime(Date toDate, Date fromDate) throws JSONException, ParseException {
 
 		sportAPIService.getSeries("2018");
 		List<Series> seriesList = new ArrayList<>();

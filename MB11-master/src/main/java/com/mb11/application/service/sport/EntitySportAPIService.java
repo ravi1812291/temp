@@ -1,20 +1,34 @@
 package com.mb11.application.service.sport;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+
 
 import com.mb11.application.config.RestTemplateConfig;
 import com.mb11.application.model.cricapidata.MTeam;
 import com.mb11.application.model.cricapidata.Match;
+import com.mb11.application.model.cricapidata.Series;
 import com.mb11.application.model.cricapidata.TeamPlayers;
-import com.mb11.application.payload.admin.sport.Series;
+
 import com.mb11.application.sport.helper.SportAPIHelper;
 
-import net.minidev.json.JSONObject;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 
@@ -29,7 +43,7 @@ public class EntitySportAPIService {
 	
 	private String competitionsUrl;
 
-	public List<Series> getSeries(String year) {
+	public List<Series> getSeries(String year) throws JSONException, ParseException {
 		
 		competitionsUrl=apiHelper.getSeriesApi(year);
 		
@@ -37,19 +51,51 @@ public class EntitySportAPIService {
 		baseUrl.append("/"+competitionsUrl);
 		baseUrl.append("?token="+RestTemplateConfig.apiTocken);
 		
-
+		HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        
+		HttpEntity entity = new HttpEntity(headers);
 		
-		JSONObject jsonObject = restTemplate.getForObject(baseUrl.toString(),JSONObject.class);
+	//	JSONObject jsonObject = restTemplate.getForObject(baseUrl.toString(),JSONObject.class);
 		
-	
+		//String jsonObject = restTemplate.getForObject(baseUrl.toString(),String.class);
+		
+		 ResponseEntity<String> response =  restTemplate.exchange(baseUrl.toString(),HttpMethod.GET, entity,String.class);
+		 JSONObject myResponse = new JSONObject(response.getBody());
+		 
+		 System.out.println("Response is-----  "+myResponse);
+		 System.out.println();
+		 JSONArray jsonResults = myResponse.getJSONObject("response").getJSONArray("items");
+		 System.out.println("JSON ARRAY IS........ "+jsonResults);
+		 List<Series> lseries=new ArrayList<>();
+		 
+		 for(int i=0; i < jsonResults.length();i++)
+		 {
+			 DateFormat formatter = new SimpleDateFormat("yyyy-MM-DD"); 
+			 Date startdate = (Date)formatter.parse(jsonResults.getJSONObject(i).getString("datestart"));
+			 Date enddate=(Date)formatter.parse(jsonResults.getJSONObject(i).getString("dateend"));
+			  Long cid=jsonResults.getJSONObject(i).getLong("cid");
+			 lseries.add(
+					 new Series(
+							Long.toString(cid),
+							 jsonResults.getJSONObject(i).getString("title"),
+							 jsonResults.getJSONObject(i).getString("abbr"),
+							 jsonResults.getJSONObject(i).getString("category"),
+							 startdate,enddate,
+							 jsonResults.getJSONObject(i).getInt("total_matches"),
+							 jsonResults.getJSONObject(i).getInt("total_teams"),
+							 false
+							 )
+					 );
+			
+			 System.out.println(jsonResults.getJSONObject(i).getLong("cid"));
+			 System.out.println(jsonResults.getJSONObject(i).getString("title"));
+			 System.out.println(jsonResults.getJSONObject(i).getString("abbr"));
+		
+		 }
 		
 		
-		System.out.println(jsonObject);
-		
-		System.out.println(jsonObject.get("datetime"));
-		
-		
-		return null;
+		return lseries;
 		
 	}
 	

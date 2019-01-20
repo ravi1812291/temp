@@ -22,6 +22,8 @@ public class Series {
 
 	private String link;
 
+	
+
 	public long getObjId() {
 		return objId;
 	}
