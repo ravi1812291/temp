@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,7 @@ import com.mb11.application.config.RestTemplateConfig;
 import com.mb11.application.model.cricapidata.MTeam;
 import com.mb11.application.model.cricapidata.Match;
 import com.mb11.application.model.cricapidata.Series;
+import com.mb11.application.model.cricapidata.Sporttype;
 import com.mb11.application.model.cricapidata.TeamPlayers;
 
 import com.mb11.application.sport.helper.SportAPIHelper;
@@ -95,17 +97,47 @@ public class EntitySportAPIService {
 
 	public List<MTeam> getTeams(Long id) {
 
-		competitionsUrl = apiHelper.getTeamsApi(1L);
+		competitionsUrl = apiHelper.getTeamsApi(id);
 
 		StringBuilder baseUrl = RestTemplateConfig.getBaseURL();
 		baseUrl.append("/" + competitionsUrl);
 		baseUrl.append("?token=" + RestTemplateConfig.apiTocken);
 
-		JSONObject jsonObject = restTemplate.getForObject(baseUrl.toString(), JSONObject.class);
+		headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
 
-		// System.out.println(jsonObject.toJSONString());
+		entity = new HttpEntity(headers);
 
-		return null;
+		response = restTemplate.exchange(baseUrl.toString(), HttpMethod.GET, entity, String.class);
+		JSONObject myResponse = new JSONObject(response.getBody());
+
+		System.out.println("Response is-----  " + myResponse);
+		System.out.println();
+		
+		JSONArray jsonResults = myResponse.getJSONObject("response").getJSONArray("teams");
+		System.out.println("JSON ARRAY IS........ " + jsonResults);
+		List<MTeam> lteams = new ArrayList<>();
+
+		for (int i = 0; i < jsonResults.length(); i++)
+		{
+			//public MTeam(Long teamid, String teamname, String teamabbr, String logo_url, String sex,
+			//Sporttype sporttype,
+				//	Set<Series> series)
+			
+			
+			lteams.add(new MTeam(
+					jsonResults.getJSONObject(i).getLong("tid"),
+					jsonResults.getJSONObject(i).getString("title"),
+					jsonResults.getJSONObject(i).getString("abbr"),
+					jsonResults.getJSONObject(i).getString("logo_url"),
+					jsonResults.getJSONObject(i).getString("sex"),
+					Sporttype.Cricket,null
+					
+					));
+			
+		}
+		
+		return lteams;
 
 	}
 

@@ -9,7 +9,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 import com.mb11.application.config.MB11Properties;
+import com.mb11.application.dao.cricapidata.MTeamRepository;
 import com.mb11.application.dao.cricapidata.SeriesRepository;
+import com.mb11.application.model.cricapidata.MTeam;
 import com.mb11.application.model.cricapidata.Series;
 import com.mb11.application.service.sport.EntitySportAPIService;
 
@@ -23,6 +25,9 @@ public class MB11App implements CommandLineRunner
 	@Autowired
 	SeriesRepository sr;
 	
+	@Autowired
+	MTeamRepository mtr;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(MB11App.class, args);
 	}
@@ -30,10 +35,14 @@ public class MB11App implements CommandLineRunner
 	@Override
 	public void run(String... args) throws Exception {
 		
-		List<Series> ls=es.getSeries("201819");
-		System.out.println(ls.size());
+		//List<Series> ls=es.getSeries("201819");
+		//System.out.println(ls.size());
 		//sr.saveAll(ls);
 		//es.getMatches(111146L);
+		
+		List<MTeam> mt=es.getTeams(111297L);
+		mtr.saveAll(mt);
+		
 		
 	}
 }
