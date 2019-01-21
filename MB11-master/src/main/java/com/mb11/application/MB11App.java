@@ -56,7 +56,7 @@ public class MB11App implements CommandLineRunner
 		
 		//es.getMatches(111297L);
 		
-		es.getTeamPlayers(111297L);
+		//es.getTeamPlayers(111297L);
 		
 		
 	}
