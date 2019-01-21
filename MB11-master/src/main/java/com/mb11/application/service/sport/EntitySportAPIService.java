@@ -225,18 +225,42 @@ public class EntitySportAPIService {
 		System.out.println("TeamPlayers API Response is-----  " + myResponse);
 		System.out.println();
 
-		JSONArray jsonResults = myResponse.getJSONObject("response").getJSONArray("items");
+		JSONArray jsonResults = myResponse.getJSONObject("response").getJSONArray("squads");
+		
+	//	JSONArray jsonResults1 = myResponse.getJSONObject("response").getJSONArray("squads");
+		
+		
 		System.out.println("TeamPlayers JSON ARRAY IS........ " + jsonResults);
 
 		List<TeamPlayers> lTeamPlayers = new ArrayList<>();
-
+		//List<MTeam> lteams = new ArrayList<>();
+		MTeam lteams=null;
 		for (int i = 0; i < jsonResults.length(); i++) {
+			
+			
+			JSONObject playesrObject=jsonResults.getJSONObject(i);
+			  JSONArray playesrArray = playesrObject.getJSONArray("players");
+			  for (int j = 0; j < playesrArray.length(); j++) 
+	            {
+				  
+				//  lteams.add(
+				  lteams=  new MTeam(playesrArray.getJSONObject(j).getLong("tid"),
+								  playesrArray.getJSONObject(j).getString("title"),
+								  playesrArray.getJSONObject(j).getString("abbr"),
+								  playesrArray.getJSONObject(j).getString("logo_url"),
+								  playesrArray.getJSONObject(j).getString("sex"),
+									Sporttype.Cricket, null
 
+						//	)
+						  );
+	            }
+			  
 			lTeamPlayers.add(new TeamPlayers(
-
-					jsonResults.getJSONObject(i).getLong("pid"), jsonResults.getJSONObject(i).getString("first_name"),
+					
+					jsonResults.getJSONObject(i).getLong("pid"), 
+					jsonResults.getJSONObject(i).getString("first_name"),
 					jsonResults.getJSONObject(i).getString("middle_name"),
-					jsonResults.getJSONObject(i).getString("last_name"), new MTeam() // will have to update this line
+					jsonResults.getJSONObject(i).getString("last_name"), lteams // will have to update this line
 
 			));
 

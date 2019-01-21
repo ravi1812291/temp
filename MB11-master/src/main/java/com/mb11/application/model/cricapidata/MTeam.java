@@ -50,6 +50,8 @@ public class MTeam {
 	public MTeam() {
 		
 	}
+	
+	
 
 	public MTeam(Long teamid, String teamname, String teamabbr, String logo_url, String sex, Sporttype sporttype,
 			Set<Series> series) {
