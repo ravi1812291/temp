@@ -22,10 +22,10 @@ import com.mb11.application.sport.helper.SportAPIHelper;
 
 @Service
 public class CricSportService {
-	
+
 	@Autowired
 	private EntitySportAPIService es;
-	
+
 	@Autowired
 	private RestTemplate restTemplate;
 
@@ -39,7 +39,7 @@ public class CricSportService {
 	private ResponseEntity<String> response;
 
 	private String competitionsUrl;
-	
+
 	public Set<MTeam> getTeamsWithSet(Long id) {
 
 		competitionsUrl = apiHelper.getTeamsApi(id);
@@ -53,37 +53,28 @@ public class CricSportService {
 		JSONObject myResponse = new JSONObject(response.getBody());
 
 		System.out.println("Response is-----  " + myResponse);
-	
-		
+
 		JSONArray jsonResults = myResponse.getJSONObject("response").getJSONArray("teams");
-		
+
 		System.out.println("JSON ARRAY IS........ " + jsonResults);
 		Set<MTeam> lteams = new HashSet<>();
-        String logo_url="";
-		for (int i = 0; i < jsonResults.length(); i++)
-		{
-			if(myResponse.has("logo_url"))
-			{
-				logo_url=jsonResults.getJSONObject(i).getString("logo_url");
+		String logo_url = "";
+		for (int i = 0; i < jsonResults.length(); i++) {
+			if (myResponse.has("logo_url")) {
+				logo_url = jsonResults.getJSONObject(i).getString("logo_url");
+			} else {
+				logo_url = "";
 			}
-			else
-			{
-				logo_url="";
-			}
-			
-			lteams.add(new MTeam(
-					jsonResults.getJSONObject(i).getLong("tid"),
-					jsonResults.getJSONObject(i).getString("title"),
-					jsonResults.getJSONObject(i).getString("abbr"),
-					//jsonResults.getJSONObject(i).getString("logo_url"),
-					logo_url,
-					jsonResults.getJSONObject(i).getString("sex"),
-					Sporttype.Cricket,null
-					
-					));
-			
+
+			lteams.add(new MTeam(jsonResults.getJSONObject(i).getLong("tid"),
+					jsonResults.getJSONObject(i).getString("title"), jsonResults.getJSONObject(i).getString("abbr"),
+					// jsonResults.getJSONObject(i).getString("logo_url"),
+					logo_url, jsonResults.getJSONObject(i).getString("sex"), Sporttype.Cricket, null
+
+			));
+
 		}
-		
+
 		return lteams;
 
 	}

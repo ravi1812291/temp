@@ -226,43 +226,52 @@ public class EntitySportAPIService {
 		System.out.println();
 
 		JSONArray jsonResults = myResponse.getJSONObject("response").getJSONArray("squads");
-		
-	//	JSONArray jsonResults1 = myResponse.getJSONObject("response").getJSONArray("squads");
-		
-		
+
+		// JSONArray jsonResults1 =
+		// myResponse.getJSONObject("response").getJSONArray("squads");
+
 		System.out.println("TeamPlayers JSON ARRAY IS........ " + jsonResults);
 
 		List<TeamPlayers> lTeamPlayers = new ArrayList<>();
-		//List<MTeam> lteams = new ArrayList<>();
-		MTeam lteams=null;
+		// List<MTeam> lteams = new ArrayList<>();
+		MTeam lteams = null;
+		
+		
 		for (int i = 0; i < jsonResults.length(); i++) {
 			
+			lteams=new MTeam(jsonResults.getJSONObject(i).getLong("tid"),
+					jsonResults.getJSONObject(i).getString("title"), jsonResults.getJSONObject(i).getString("abbr"),
+					jsonResults.getJSONObject(i).getString("logo_url"), jsonResults.getJSONObject(i).getString("sex"),
+					Sporttype.Cricket, null
+
+			);
+
+			JSONObject playesrObject = jsonResults.getJSONObject(i);
+			JSONArray playesrArray = playesrObject.getJSONArray("players");
+			for (int j = 0; j < playesrArray.length(); j++) {
+
+				
+				lTeamPlayers.add(new TeamPlayers(
+
+						playesrArray.getJSONObject(j).getLong("pid"),
+						playesrArray.getJSONObject(j).getString("first_name"),
+						playesrArray.getJSONObject(j).getString("middle_name"),
+						playesrArray.getJSONObject(j).getString("last_name"), lteams // will have to update this line
+
+				));	
+				
+//				 lTeamPlayers.add(
+//			new MTeam(playesrArray.getJSONObject(j).getLong("pid"),
+//						playesrArray.getJSONObject(j).getString("first_name"),
+//						playesrArray.getJSONObject(j).getString("abbr"),
+//						playesrArray.getJSONObject(j).getString("logo_url"),
+//						playesrArray.getJSONObject(j).getString("sex"), Sporttype.Cricket, null
+//
+//				 )
+//				);
+			}
+
 			
-			JSONObject playesrObject=jsonResults.getJSONObject(i);
-			  JSONArray playesrArray = playesrObject.getJSONArray("players");
-			  for (int j = 0; j < playesrArray.length(); j++) 
-	            {
-				  
-				//  lteams.add(
-				  lteams=  new MTeam(playesrArray.getJSONObject(j).getLong("tid"),
-								  playesrArray.getJSONObject(j).getString("title"),
-								  playesrArray.getJSONObject(j).getString("abbr"),
-								  playesrArray.getJSONObject(j).getString("logo_url"),
-								  playesrArray.getJSONObject(j).getString("sex"),
-									Sporttype.Cricket, null
-
-						//	)
-						  );
-	            }
-			  
-			lTeamPlayers.add(new TeamPlayers(
-					
-					jsonResults.getJSONObject(i).getLong("pid"), 
-					jsonResults.getJSONObject(i).getString("first_name"),
-					jsonResults.getJSONObject(i).getString("middle_name"),
-					jsonResults.getJSONObject(i).getString("last_name"), lteams // will have to update this line
-
-			));
 
 		}
 
