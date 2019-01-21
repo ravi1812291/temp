@@ -260,15 +260,7 @@ public class EntitySportAPIService {
 
 				));	
 				
-//				 lTeamPlayers.add(
-//			new MTeam(playesrArray.getJSONObject(j).getLong("pid"),
-//						playesrArray.getJSONObject(j).getString("first_name"),
-//						playesrArray.getJSONObject(j).getString("abbr"),
-//						playesrArray.getJSONObject(j).getString("logo_url"),
-//						playesrArray.getJSONObject(j).getString("sex"), Sporttype.Cricket, null
-//
-//				 )
-//				);
+
 			}
 
 			
