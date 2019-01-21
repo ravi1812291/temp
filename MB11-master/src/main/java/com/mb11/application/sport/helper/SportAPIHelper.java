@@ -114,7 +114,7 @@ public class SportAPIHelper {
 	
 	
 	
-	public String getMatchSquad(Long id,int id1)
+	public String getInningScoreboard(Long id,int id1)
 	{
 		//https://rest.entitysport.com/v2/matches/19899/innings/1/scorecard?token=
 		competitionsUrl="/matches/"+id+"/innings"+id1+"/scorecard";
