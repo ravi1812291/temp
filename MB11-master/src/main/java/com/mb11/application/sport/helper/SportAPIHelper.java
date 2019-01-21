@@ -73,6 +73,56 @@ public class SportAPIHelper {
 		return baseUrl.toString();
 	}
 	
+
+	
+	public String getScorecard(Long id)
+	{
+		
+		//https://rest.entitysport.com/v2/matches/19899/scorecard?token=
+		
+		competitionsUrl="/matches/"+id+"/scorecard";
+		StringBuilder baseUrl = RestTemplateConfig.getBaseURL();
+		baseUrl.append("/" + competitionsUrl);
+		baseUrl.append("?token=" + RestTemplateConfig.apiTocken);
+		
+		return baseUrl.toString();
+	}
+	
+
+	public String getLiveStatus(Long id)
+	{
+		
+		//https://rest.entitysport.com/v2/matches/19899/live?token=
+		
+		competitionsUrl="/matches/"+id+"/live";
+		StringBuilder baseUrl = RestTemplateConfig.getBaseURL();
+		baseUrl.append("/" + competitionsUrl);
+		baseUrl.append("?token=" + RestTemplateConfig.apiTocken);
+		
+		return baseUrl.toString();
+	}
+	
+	public String getMatchSquad(Long id)
+	{
+		//https://rest.entitysport.com/v2/matches/19899/squads?token=
+		competitionsUrl="/matches/"+id+"/squads";
+		StringBuilder baseUrl = RestTemplateConfig.getBaseURL();
+		baseUrl.append("/" + competitionsUrl);
+		baseUrl.append("?token=" + RestTemplateConfig.apiTocken);
+		return baseUrl.toString();
+	}
+	
+	
+	
+	public String getMatchSquad(Long id,int id1)
+	{
+		//https://rest.entitysport.com/v2/matches/19899/innings/1/scorecard?token=
+		competitionsUrl="/matches/"+id+"/innings"+id1+"/scorecard";
+		StringBuilder baseUrl = RestTemplateConfig.getBaseURL();
+		baseUrl.append("/" + competitionsUrl);
+		baseUrl.append("?token=" + RestTemplateConfig.apiTocken);
+		return baseUrl.toString();
+	}
 	
 
 }
