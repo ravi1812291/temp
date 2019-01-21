@@ -12,9 +12,9 @@ public class SportAPIHelper {
 	
 	public String getSeriesApi(String yearsPeriod)
 	{
-		//https://rest.entitysport.com/v2/seasons/201617/competitions?token=ec471071441bb2ac538a0ff901abd249
+		//https://rest.entitysport.com/v2/seasons/201617/competitions?token=
 
-	    //https://rest.entitysport.com/v2/seasons/2016/competitions?token=ec471071441bb2ac538a0ff901abd249
+	    //https://rest.entitysport.com/v2/seasons/2016/competitions?token=
 		competitionsUrl="/seasons/"+yearsPeriod.trim()+"/competitions";
 		
 		StringBuilder baseUrl = RestTemplateConfig.getBaseURL();
@@ -26,7 +26,7 @@ public class SportAPIHelper {
 	
 	public String getTeamsApi(Long id)
 	{
-		//https://rest.entitysport.com/v2/competitions/90534/teams?token=ec471071441bb2ac538a0ff901abd249
+		//https://rest.entitysport.com/v2/competitions/90534/teams?token=
 		competitionsUrl="/competitions/"+id+"/teams";
 		
 		StringBuilder baseUrl = RestTemplateConfig.getBaseURL();
@@ -38,7 +38,7 @@ public class SportAPIHelper {
 	
 	public String getMatchesApi(Long id)
 	{
-		//https://rest.entitysport.com/v2/competitions/90534/matches?token=ec471071441bb2ac538a0ff901abd249
+		//https://rest.entitysport.com/v2/competitions/90534/matches?token=
 		competitionsUrl= "/competitions/"+id+"/matches";
 		StringBuilder baseUrl = RestTemplateConfig.getBaseURL();
 		baseUrl.append("/" + competitionsUrl);
@@ -51,7 +51,7 @@ public class SportAPIHelper {
 	
 	public String getPlayersApi(Long id)
 	{
-		//https://rest.entitysport.com/v2/competitions/90534/squads?token=ec471071441bb2ac538a0ff901abd249
+		//https://rest.entitysport.com/v2/competitions/90534/squads?token=
 		competitionsUrl= "/competitions/"+id+"/squads";
 		
 		StringBuilder baseUrl = RestTemplateConfig.getBaseURL();
@@ -63,7 +63,7 @@ public class SportAPIHelper {
 	
 	public String getPlayerInfo(Long player_id)
 	{
-		//https://rest.entitysport.com/v2/players/119?token=ec471071441bb2ac538a0ff901abd249
+		//https://rest.entitysport.com/v2/players/119?token=
 		competitionsUrl= "/players/"+player_id;
 		
 		StringBuilder baseUrl = RestTemplateConfig.getBaseURL();
