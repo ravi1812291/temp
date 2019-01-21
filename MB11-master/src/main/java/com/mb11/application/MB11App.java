@@ -44,7 +44,7 @@ public class MB11App implements CommandLineRunner
 	//List<Series> ls=es.getSeriesAndTeams("201819");
 	//sr.saveAll(ls);
 		
-//		List<Match> matches= es.getMatches(111297L);	
+	List<Match> matches= es.getMatches(111297L);	
 //		mr.saveAll(matches);
 		
 		//System.out.println(ls.size());

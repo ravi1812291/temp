@@ -37,7 +37,7 @@ public class EntitySportAPIService {
 
 	@Autowired
 	private SportAPIHelper apiHelper;
-	
+
 	@Autowired
 	private CricSportService cricSportservice;
 
@@ -56,9 +56,9 @@ public class EntitySportAPIService {
 	private Long cid;
 
 	private String competitionsUrl;
-	
+
 	private String competitionsUrl1;
-	
+
 	public List<Series> getSeriesAndTeams(String year) throws JSONException, ParseException {
 
 		competitionsUrl = apiHelper.getSeriesApi(year);
@@ -72,22 +72,21 @@ public class EntitySportAPIService {
 		JSONObject myResponse = new JSONObject(response.getBody());
 
 		System.out.println("Response is-----  " + myResponse);
-	
+
 		JSONArray jsonResults = myResponse.getJSONObject("response").getJSONArray("items");
 		System.out.println("JSON ARRAY IS........ " + jsonResults);
 		List<Series> lseries = new ArrayList<>();
-		
-		
 
 		for (int i = 0; i < jsonResults.length(); i++) {
 			formatter = new SimpleDateFormat("yyyy-MM-DD");
 			startdate = (Date) formatter.parse(jsonResults.getJSONObject(i).getString("datestart"));
 			enddate = (Date) formatter.parse(jsonResults.getJSONObject(i).getString("dateend"));
-			Long cid = jsonResults.getJSONObject(i).getLong("cid");
+			cid = jsonResults.getJSONObject(i).getLong("cid");
 			lseries.add(new Series(Long.toString(cid), jsonResults.getJSONObject(i).getString("title"),
 					jsonResults.getJSONObject(i).getString("abbr"), jsonResults.getJSONObject(i).getString("category"),
 					startdate, enddate, jsonResults.getJSONObject(i).getInt("total_matches"),
-					jsonResults.getJSONObject(i).getInt("total_teams"), false,cricSportservice.getTeamsWithSet(Long.valueOf(cid))));
+					jsonResults.getJSONObject(i).getInt("total_teams"), false,
+					cricSportservice.getTeamsWithSet(Long.valueOf(cid))));
 
 		}
 
@@ -108,7 +107,7 @@ public class EntitySportAPIService {
 		JSONObject myResponse = new JSONObject(response.getBody());
 
 		System.out.println("Response is-----  " + myResponse);
-	
+
 		JSONArray jsonResults = myResponse.getJSONObject("response").getJSONArray("items");
 		System.out.println("JSON ARRAY IS........ " + jsonResults);
 		List<Series> lseries = new ArrayList<>();
@@ -117,7 +116,7 @@ public class EntitySportAPIService {
 			formatter = new SimpleDateFormat("yyyy-MM-DD");
 			startdate = (Date) formatter.parse(jsonResults.getJSONObject(i).getString("datestart"));
 			enddate = (Date) formatter.parse(jsonResults.getJSONObject(i).getString("dateend"));
-			Long cid = jsonResults.getJSONObject(i).getLong("cid");
+			cid = jsonResults.getJSONObject(i).getLong("cid");
 			lseries.add(new Series(Long.toString(cid), jsonResults.getJSONObject(i).getString("title"),
 					jsonResults.getJSONObject(i).getString("abbr"), jsonResults.getJSONObject(i).getString("category"),
 					startdate, enddate, jsonResults.getJSONObject(i).getInt("total_matches"),
@@ -128,8 +127,6 @@ public class EntitySportAPIService {
 		return lseries;
 
 	}
-
-	
 
 	public List<MTeam> getTeams(Long id) {
 
@@ -144,34 +141,27 @@ public class EntitySportAPIService {
 		JSONObject myResponse = new JSONObject(response.getBody());
 
 		System.out.println("Response is-----  " + myResponse);
-	
-		
+
 		JSONArray jsonResults = myResponse.getJSONObject("response").getJSONArray("teams");
 		System.out.println("JSON ARRAY IS........ " + jsonResults);
 		List<MTeam> lteams = new ArrayList<>();
 
-		for (int i = 0; i < jsonResults.length(); i++)
-		{
-			
-			lteams.add(new MTeam(
-					jsonResults.getJSONObject(i).getLong("tid"),
-					jsonResults.getJSONObject(i).getString("title"),
-					jsonResults.getJSONObject(i).getString("abbr"),
-					jsonResults.getJSONObject(i).getString("logo_url"),
-					jsonResults.getJSONObject(i).getString("sex"),
-					Sporttype.Cricket,null
-					
-					));
-			
+		for (int i = 0; i < jsonResults.length(); i++) {
+
+			lteams.add(new MTeam(jsonResults.getJSONObject(i).getLong("tid"),
+					jsonResults.getJSONObject(i).getString("title"), jsonResults.getJSONObject(i).getString("abbr"),
+					jsonResults.getJSONObject(i).getString("logo_url"), jsonResults.getJSONObject(i).getString("sex"),
+					Sporttype.Cricket, null
+
+			));
+
 		}
-		
+
 		return lteams;
 
 	}
-	
-	
 
-	public List<Match> getMatches(Long id) {
+	public List<Match> getMatches(Long id) throws JSONException, ParseException {
 
 		competitionsUrl = apiHelper.getMatchesApi(id);
 
@@ -185,26 +175,37 @@ public class EntitySportAPIService {
 
 		System.out.println("Match API Response is-----  " + myResponse);
 		System.out.println();
-		
+
 		JSONArray jsonResults = myResponse.getJSONObject("response").getJSONArray("items");
 		System.out.println("MATCH JSON ARRAY IS........ " + jsonResults);
 		List<Match> lMatch = new ArrayList<>();
-		
-       
+
 		for (int i = 0; i < jsonResults.length(); i++) {
-			
-			lMatch.add(new Match
-					(
-			
-							jsonResults.getJSONObject(i).getLong("match_id"),
-							jsonResults.getJSONObject(i).getString("title"),
-							jsonResults.getJSONObject(i).getString("format_str"),
-							jsonResults.getJSONObject(i).getString("status_str"),
-							new Series()		//will have to update this line
-				    ));
+
+			formatter = new SimpleDateFormat("yyyy-MM-DD");
+			startdate = (Date) formatter
+					.parse(jsonResults.getJSONObject(i).getJSONObject("competition").getString("datestart"));
+			enddate = (Date) formatter
+					.parse(jsonResults.getJSONObject(i).getJSONObject("competition").getString("dateend"));
+			cid = jsonResults.getJSONObject(i).getJSONObject("competition").getLong("cid");
+
+			lMatch.add(new Match(
+
+					jsonResults.getJSONObject(i).getLong("match_id"), jsonResults.getJSONObject(i).getString("title"),
+					jsonResults.getJSONObject(i).getString("format_str"),
+					jsonResults.getJSONObject(i).getString("status_str"),
+					new Series(Long.toString(cid),
+							jsonResults.getJSONObject(i).getJSONObject("competition").getString("title"),
+							jsonResults.getJSONObject(i).getJSONObject("competition").getString("abbr"),
+							jsonResults.getJSONObject(i).getJSONObject("competition").getString("category"), startdate,
+							enddate, jsonResults.getJSONObject(i).getJSONObject("competition").getInt("total_matches"),
+							jsonResults.getJSONObject(i).getJSONObject("competition").getInt("total_teams"), false,
+							cricSportservice.getTeamsWithSet(Long.valueOf(cid)
+
+							))));
 
 		}
-		
+
 		return lMatch;
 
 	}
@@ -223,34 +224,26 @@ public class EntitySportAPIService {
 
 		System.out.println("TeamPlayers API Response is-----  " + myResponse);
 		System.out.println();
-		
+
 		JSONArray jsonResults = myResponse.getJSONObject("response").getJSONArray("items");
 		System.out.println("TeamPlayers JSON ARRAY IS........ " + jsonResults);
-		
+
 		List<TeamPlayers> lTeamPlayers = new ArrayList<>();
-		
+
 		for (int i = 0; i < jsonResults.length(); i++) {
-			
-			lTeamPlayers.add(new TeamPlayers
-					(
-					
-							jsonResults.getJSONObject(i).getLong("pid"),
-							jsonResults.getJSONObject(i).getString("first_name"),
-							jsonResults.getJSONObject(i).getString("middle_name"),
-							jsonResults.getJSONObject(i).getString("last_name"),
-							new MTeam()  //will have to update this line
-							
-					));
+
+			lTeamPlayers.add(new TeamPlayers(
+
+					jsonResults.getJSONObject(i).getLong("pid"), jsonResults.getJSONObject(i).getString("first_name"),
+					jsonResults.getJSONObject(i).getString("middle_name"),
+					jsonResults.getJSONObject(i).getString("last_name"), new MTeam() // will have to update this line
+
+			));
 
 		}
-		
-		
 
 		return lTeamPlayers;
 
 	}
-	
 
-	
-	
 }
