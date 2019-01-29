@@ -5,11 +5,22 @@ import org.springframework.stereotype.Service;
 
 import com.mb11.application.config.RestTemplateConfig;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SportAPIHelper.
+ */
 @Service
 public class SportAPIHelper {
 	
+	/** The competitions url. */
 	private String competitionsUrl;
 	
+	/**
+	 * Gets the series api.
+	 *
+	 * @param yearsPeriod the years period
+	 * @return the series api
+	 */
 	public String getSeriesApi(String yearsPeriod)
 	{
 		//https://rest.entitysport.com/v2/seasons/201617/competitions?token=
@@ -24,6 +35,12 @@ public class SportAPIHelper {
 		return baseUrl.toString();
 	}
 	
+	/**
+	 * Gets the teams api.
+	 *
+	 * @param id the id
+	 * @return the teams api
+	 */
 	public String getTeamsApi(Long id)
 	{
 		//https://rest.entitysport.com/v2/competitions/90534/teams?token=
@@ -36,6 +53,12 @@ public class SportAPIHelper {
 		return baseUrl.toString();
 	}
 	
+	/**
+	 * Gets the matches api.
+	 *
+	 * @param id the id
+	 * @return the matches api
+	 */
 	public String getMatchesApi(Long id)
 	{
 		//https://rest.entitysport.com/v2/competitions/90534/matches?token=
@@ -49,6 +72,12 @@ public class SportAPIHelper {
 				
 	}
 	
+	/**
+	 * Gets the players api.
+	 *
+	 * @param id the id
+	 * @return the players api
+	 */
 	public String getPlayersApi(Long id)
 	{
 		//https://rest.entitysport.com/v2/competitions/90534/squads?token=
@@ -61,6 +90,12 @@ public class SportAPIHelper {
 		return baseUrl.toString();
 	}
 	
+	/**
+	 * Gets the player info.
+	 *
+	 * @param player_id the player id
+	 * @return the player info
+	 */
 	public String getPlayerInfo(Long player_id)
 	{
 		//https://rest.entitysport.com/v2/players/119?token=
@@ -75,6 +110,12 @@ public class SportAPIHelper {
 	
 
 	
+	/**
+	 * Gets the scorecard.
+	 *
+	 * @param id the id
+	 * @return the scorecard
+	 */
 	public String getScorecard(Long id)
 	{
 		
@@ -89,6 +130,12 @@ public class SportAPIHelper {
 	}
 	
 
+	/**
+	 * Gets the live status.
+	 *
+	 * @param id the id
+	 * @return the live status
+	 */
 	public String getLiveStatus(Long id)
 	{
 		
@@ -102,6 +149,12 @@ public class SportAPIHelper {
 		return baseUrl.toString();
 	}
 	
+	/**
+	 * Gets the match squad.
+	 *
+	 * @param id the id
+	 * @return the match squad
+	 */
 	public String getMatchSquad(Long id)
 	{
 		//https://rest.entitysport.com/v2/matches/19899/squads?token=
@@ -114,6 +167,13 @@ public class SportAPIHelper {
 	
 	
 	
+	/**
+	 * Gets the inning scoreboard.
+	 *
+	 * @param id the id
+	 * @param id1 the id 1
+	 * @return the inning scoreboard
+	 */
 	public String getInningScoreboard(Long id,int id1)
 	{
 		//https://rest.entitysport.com/v2/matches/19899/innings/1/scorecard?token=

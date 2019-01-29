@@ -29,36 +29,60 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class EntitySportAPIService.
+ */
 @Service
 public class EntitySportAPIService {
 
+	/** The rest template. */
 	@Autowired
 	private RestTemplate restTemplate;
 
+	/** The api helper. */
 	@Autowired
 	private SportAPIHelper apiHelper;
 
+	/** The cric sportservice. */
 	@Autowired
 	private CricSportService cricSportservice;
 
+	/** The headers. */
 	private HttpHeaders headers;
 
+	/** The entity. */
 	private HttpEntity entity;
 
+	/** The response. */
 	private ResponseEntity<String> response;
 
+	/** The formatter. */
 	private DateFormat formatter;
 
+	/** The startdate. */
 	private Date startdate;
 
+	/** The enddate. */
 	private Date enddate;
 
+	/** The cid. */
 	private Long cid;
 
+	/** The competitions url. */
 	private String competitionsUrl;
 
+	/** The competitions url 1. */
 	private String competitionsUrl1;
 
+	/**
+	 * Gets the series and teams.
+	 *
+	 * @param year the year
+	 * @return the series and teams
+	 * @throws JSONException the JSON exception
+	 * @throws ParseException the parse exception
+	 */
 	public List<Series> getSeriesAndTeams(String year) throws JSONException, ParseException {
 
 		competitionsUrl = apiHelper.getSeriesApi(year);
@@ -94,6 +118,14 @@ public class EntitySportAPIService {
 
 	}
 
+	/**
+	 * Gets the series.
+	 *
+	 * @param year the year
+	 * @return the series
+	 * @throws JSONException the JSON exception
+	 * @throws ParseException the parse exception
+	 */
 	public List<Series> getSeries(String year) throws JSONException, ParseException {
 
 		competitionsUrl = apiHelper.getSeriesApi(year);
@@ -128,6 +160,12 @@ public class EntitySportAPIService {
 
 	}
 
+	/**
+	 * Gets the teams.
+	 *
+	 * @param id the id
+	 * @return the teams
+	 */
 	public List<MTeam> getTeams(Long id) {
 
 		competitionsUrl = apiHelper.getTeamsApi(id);
@@ -161,6 +199,14 @@ public class EntitySportAPIService {
 
 	}
 
+	/**
+	 * Gets the matches.
+	 *
+	 * @param id the id
+	 * @return the matches
+	 * @throws JSONException the JSON exception
+	 * @throws ParseException the parse exception
+	 */
 	public List<Match> getMatches(Long id) throws JSONException, ParseException {
 
 		competitionsUrl = apiHelper.getMatchesApi(id);
@@ -210,6 +256,12 @@ public class EntitySportAPIService {
 
 	}
 
+	/**
+	 * Gets the team players.
+	 *
+	 * @param id the id
+	 * @return the team players
+	 */
 	public List<TeamPlayers> getTeamPlayers(Long id) {
 
 		competitionsUrl = apiHelper.getPlayersApi(id);
